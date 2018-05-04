@@ -1,0 +1,1 @@
+# workshop-norsktipping-kafka-operations
