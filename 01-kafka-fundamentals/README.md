@@ -68,9 +68,59 @@ JMX_PORT=9990 bin/kafka-server-start.sh config/server101.properties
 and execute JMX tool:
 
 ```
-kafka-run-class kafka.tools.JmxTool \
+bin/kafka-run-class.sh kafka.tools.JmxTool \
 --object-name kafka.server:type=app-info,id=101 \
---jmx-url service:jmx:rmi:///jndi/rmi://broker101:9991/jmxrmi
+--jmx-url service:jmx:rmi:///jndi/rmi://localhost:9991/jmxrmi
 ```
 
 To validate Kafka version.
+
+#### Command line tools
+
+Create your first topic:
+
+```
+bin/kafka-topics.sh \
+--zookeeper localhost:2181 \
+--create \
+--topic my-first-topic \
+--partitions 1 \
+--replication-factor 1
+```
+
+List topics:
+
+```
+bin/kafka-topics.sh \
+--zookeeper localhost:2181 \
+--list
+```
+
+Describe topic:
+
+```
+bin/kafka-topics.sh \
+--zookeeper localhost:2181 \
+--describe \
+--topic my-first-topic
+```
+
+Produce messages from console:
+
+```
+bin/kafka-console-producer.sh \
+--broker-list localhost:9092 \
+--topic my-first-topic 
+
+>Hello
+>world
+```
+
+Consume messages from console:
+
+```
+bin/kafka-console-consumer.sh \
+--bootstrap-server localhost:9092 \
+--topic my-first-topic \
+--from-beginning
+```
