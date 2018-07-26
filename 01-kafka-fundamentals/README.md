@@ -49,7 +49,7 @@ zookeeper.connect=localhost:2181
 zookeeper.session.timeout.ms=30000
 ```
 
-Large ZooKeeper session timeout (default is 6000ms) to avoid dropped connections between the Brokers and ZooKeeper.
+Large ZooKeeperCreate session timeout (default is 6000ms) to avoid dropped connections between the Brokers and ZooKeeper.
 
 #### Log files
 
