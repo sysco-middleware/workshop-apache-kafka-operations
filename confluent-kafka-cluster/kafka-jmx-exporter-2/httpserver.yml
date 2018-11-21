@@ -1,0 +1,8 @@
+---
+hostPort: kafka-2:5555
+username:
+password:
+
+rules:
+  - pattern: ".*"
+
