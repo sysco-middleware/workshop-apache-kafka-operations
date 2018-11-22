@@ -41,7 +41,7 @@ services:
       - 9093:9093
       - 29093:29093
     environment:
-      KAFKA_BROKER_ID: 1
+      KAFKA_BROKER_ID: 101
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka-1:9093,PLAINTEXT_HOST://localhost:29093
@@ -118,7 +118,15 @@ services:
     volumes:
       - prom_data:/prometheus
       - ./prom-config/prometheus.yml:/etc/prometheus/prometheus.yml
-
+  grafana:
+    image: grafana/grafana:5.2.2
+    ports:
+      - 3000:3000
+    environment:
+      GF_AUTH_ANONYMOUS_ENABLED: "true"
+      GF_AUTH_ANONYMOUS_ORG_ROLE: Admin
+    volumes:
+      - grafana_data:/var/lib/grafana 
   
 volumes:
   zk_data:
@@ -127,6 +135,7 @@ volumes:
   kafka_data1:
   kafka_data2:
   prom_data:
+  grafana_data:
 networks:
   default:
     external:
