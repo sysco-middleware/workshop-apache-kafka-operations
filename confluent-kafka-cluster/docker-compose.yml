@@ -69,6 +69,16 @@ services:
       - zookeeper
     volumes:
       - kafka_data2:/var/lib/kafka/data
+  schema-registry:
+    image: confluentinc/cp-schema-registry:5.0.0
+    ports:
+      - 8081:8081
+    environment:
+      SCHEMA_REGISTRY_HOST_NAME: localhost
+      SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8081
+      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: PLAINTEXT://kafka-0:9092,kafka-1:9093,kafka-2:9094
+      SCHEMA_REGISTRY_OPTS: '-Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.port=5555'
+
   ###################
   ##               ##
   ## JMX Exporters ##
@@ -136,7 +146,3 @@ volumes:
   kafka_data2:
   prom_data:
   grafana_data:
-networks:
-  default:
-    external:
-      name: composes
