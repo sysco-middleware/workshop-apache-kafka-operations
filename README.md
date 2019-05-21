@@ -4,6 +4,8 @@ This workshop is aimed to provide enough concepts and practical experience
 to spin up a Kafka Cluster and be able to operate it, monitor it and 
 scale it.
 
+In addition to this workshop there is a Confluent operation training materials which you may find [here](https://github.com/sysco-middleware/kafka-operations-training) 
+
 ## Agenda
 
 1. [Kafka Fundamentals](./01-kafka-fundamentals)
